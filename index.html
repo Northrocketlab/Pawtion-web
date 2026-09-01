@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="เครื่องคำนวณปริมาณอาหารสำหรับสุนัขและแมว" />
+    <title>Pawtion — อาหารที่พอดีสำหรับเขา</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <nav class="nav shell" aria-label="เมนูหลัก">
+        <a class="brand" href="#top" aria-label="Pawtion home"><span class="brand-dot"></span>Pawtion</a>
+        <div class="nav-actions"><a class="nav-link" href="#calculator" data-i18n="navCalc">คำนวณอาหาร <span>↗</span></a><button id="language-toggle" class="utility-button" type="button" aria-label="Change language">EN</button><button id="theme-toggle" class="utility-button theme-button" type="button" aria-label="Change appearance">☀</button></div>
+      </nav>
+
+      <section id="top" class="hero shell">
+        <p class="eyebrow" data-i18n="heroEyebrow">NUTRITION, SIMPLIFIED</p>
+        <h1 data-i18n-html="heroTitle">อาหารที่พอดี<br /><em>สำหรับเขา</em></h1>
+        <p class="hero-copy" data-i18n-html="heroCopy">คำแนะนำปริมาณอาหารรายวันสำหรับน้องหมาและน้องแมว<br class="desktop" /> เริ่มจากข้อมูลที่เป็นของเขาจริง ๆ</p>
+        <a class="button button-light" href="#calculator" data-i18n-html="heroButton">เริ่มคำนวณ <span>↓</span></a>
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+      </section>
+
+      <section id="calculator" class="calculator shell">
+        <div class="section-heading">
+          <p class="eyebrow">YOUR PET PROFILE</p>
+          <h2 data-i18n="profileTitle">บอกเราเรื่องเขาสักหน่อย</h2>
+          <p data-i18n="profileCopy">ผลลัพธ์เป็นจุดเริ่มต้นสำหรับสัตว์เลี้ยงสุขภาพดี โปรดปรับตามน้ำหนักและสภาพร่างกายจริง</p>
+        </div>
+
+        <form id="feeding-form" novalidate>
+          <div class="progress" aria-hidden="true"><span></span></div>
+          <div class="step-label"><span id="step-number">01</span><span id="step-title">เลือกสัตว์เลี้ยง</span><span>04</span></div>
+
+          <section class="form-step active" data-step="1">
+            <div class="choice-grid species-grid">
+              <button type="button" class="choice-card species-card selected" data-species="dog"><img class="animal-photo" src="assets/dog.png" alt="สุนัข" /><span class="species-name"><strong data-i18n="dog">สุนัข</strong><small data-i18n="dogCaption">Dog</small></span></button>
+              <button type="button" class="choice-card species-card" data-species="cat"><img class="animal-photo" src="assets/cat.png" alt="แมว" /><span class="species-name"><strong data-i18n="cat">แมว</strong><small data-i18n="catCaption">Cat</small></span></button>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="2">
+            <div class="field-row">
+              <label class="field"><span data-i18n-html="petName">ชื่อน้อง <i>ไม่บังคับ</i></span><input id="pet-name" type="text" maxlength="30" placeholder="เช่น โมจิ" /></label>
+              <label class="field"><span data-i18n="weight">น้ำหนักปัจจุบัน</span><div class="input-unit"><input id="weight" type="number" inputmode="decimal" min="0.5" max="120" step="0.1" placeholder="0.0" required /><b data-i18n="kg">กก.</b></div></label>
+            </div>
+            <label class="field"><span data-i18n="lifeStage">ช่วงวัย</span><select id="life-stage"><option value="adult" data-i18n="adult">โตเต็มวัย (1–7 ปี)</option><option value="young" data-i18n="young">วัยอ่อน / กำลังโต</option><option value="senior" data-i18n="senior">สูงวัย (7 ปีขึ้นไป)</option></select></label>
+          </section>
+
+          <section class="form-step" data-step="3">
+            <p class="question" data-i18n="neuteredQ">ทำหมันแล้วหรือยัง?</p>
+            <div class="segment" role="group" aria-label="Neutered status"><button type="button" class="selected" data-neutered="yes" data-i18n="neuteredYes">ทำหมันแล้ว</button><button type="button" data-neutered="no" data-i18n="neuteredNo">ยังไม่ทำ</button></div>
+            <p class="question space-top" data-i18n="conditionQ">รูปร่างตอนนี้เป็นอย่างไร?</p>
+            <div class="choice-grid body-grid">
+              <button type="button" class="choice-card" data-condition="thin"><span>01</span><strong data-i18n="thin">ผอม</strong><small data-i18n="gain">ต้องการเพิ่มน้ำหนัก</small></button>
+              <button type="button" class="choice-card selected" data-condition="ideal"><span>02</span><strong data-i18n="ideal">สมส่วน</strong><small data-i18n="maintain">รักษาน้ำหนัก</small></button>
+              <button type="button" class="choice-card" data-condition="overweight"><span>03</span><strong data-i18n="overweight">มีน้ำหนักเกิน</strong><small data-i18n="lose">ค่อย ๆ ลดน้ำหนัก</small></button>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="4">
+            <p class="question" data-i18n="activityQ">กิจกรรมในแต่ละวัน</p>
+            <div class="activity-list">
+              <label><input type="radio" name="activity" value="low" /><span><b data-i18n="low">น้อย</b><small data-i18n="lowDetail">เดินเล่นหรือเล่นเบา ๆ ต่ำกว่า 30 นาที</small></span></label>
+              <label class="selected"><input type="radio" name="activity" value="moderate" checked /><span><b data-i18n="moderate">ปานกลาง</b><small data-i18n="moderateDetail">มีกิจกรรม 30–60 นาทีต่อวัน</small></span></label>
+              <label><input type="radio" name="activity" value="high" /><span><b data-i18n="high">มาก</b><small data-i18n="highDetail">ออกกำลังหรือวิ่งเล่นมากกว่า 60 นาที</small></span></label>
+            </div>
+            <label class="field calorie-field"><span data-i18n-html="foodEnergy">พลังงานของอาหารที่ใช้ <i>ดูจากฉลาก</i></span><div class="input-unit"><input id="food-calories" type="number" inputmode="decimal" min="10" max="1000" step="1" value="350" required /><b>kcal / 100g</b></div></label>
+          </section>
+
+          <div class="form-actions"><button class="button button-ghost" id="back" type="button" hidden data-i18n="back">ย้อนกลับ</button><button class="button button-light" id="next" type="button">ถัดไป <span>→</span></button></div>
+        </form>
+      </section>
+
+      <section id="result" class="result shell" hidden aria-live="polite">
+        <div class="result-top"><p class="eyebrow">DAILY FEEDING GUIDE</p><button id="reset" class="text-button" data-i18n="reset">คำนวณใหม่ ↻</button></div>
+        <h2 id="result-heading" data-i18n="resultHeading">ปริมาณที่เหมาะกับน้อง</h2>
+        <p class="result-intro" id="result-intro"></p>
+        <div class="result-main"><div><span class="result-kicker" data-i18n="dailyEnergy">พลังงานต่อวัน</span><strong id="calorie-result">0 <small>kcal</small></strong></div><div class="divider"></div><div><span class="result-kicker" data-i18n="dailyFood">ปริมาณอาหารต่อวัน</span><strong id="gram-result">0 <small>กรัม</small></strong></div></div>
+        <div class="result-cards"><article><span data-i18n="twoMeals">แบ่งเป็น 2 มื้อ</span><b id="meal-result">0 กรัม / มื้อ</b></article><article><span data-i18n="weekPrep">เตรียมต่อสัปดาห์</span><b id="week-result">0 กรัม</b></article><article><span data-i18n="treatEnergy">พลังงานขนม</span><b data-i18n="treatLimit">ไม่เกิน 10%</b></article></div>
+        <aside class="note"><span>✦</span><p data-i18n="note">ตัวเลขนี้เป็นค่าเริ่มต้นจากน้ำหนัก ช่วงวัย การทำหมัน กิจกรรม และรูปร่างของน้อง ควรชั่งน้ำหนักและสังเกตสภาพร่างกายทุก 2–4 สัปดาห์</p></aside>
+        <p class="disclaimer" data-i18n="disclaimer">สำหรับสัตว์เลี้ยงสุขภาพดีเท่านั้น หากกำลังตั้งท้อง ให้นม มีโรคประจำตัว หรือมีการเปลี่ยนแปลงน้ำหนักผิดปกติ โปรดปรึกษาสัตวแพทย์ก่อนปรับอาหาร</p>
+      </section>
+
+      <section class="knowledge shell"><p class="eyebrow">KNOW THE BASICS</p><h2 data-i18n="knowledgeTitle">เริ่มให้ดี แล้วค่อยปรับให้พอดี</h2><div class="knowledge-grid"><article><span>01</span><h3 data-i18n="readLabel">อ่านฉลาก</h3><p data-i18n="readLabelCopy">กรอกค่า kcal ต่อ 100 กรัมจากอาหารที่น้องกินจริง เพื่อให้ผลลัพธ์แม่นยำขึ้น</p></article><article><span>02</span><h3 data-i18n="weigh">ชั่ง ไม่กะ</h3><p data-i18n="weighCopy">ใช้เครื่องชั่งครัวตวงอาหารเป็นกรัม แทนการกะด้วยถ้วยหรือสายตา</p></article><article><span>03</span><h3 data-i18n="follow">ติดตามผล</h3><p data-i18n="followCopy">ปรับปริมาณทีละน้อยตามน้ำหนัก รูปร่าง และกิจกรรมที่เปลี่ยนไป</p></article></div></section>
+    </main>
+    <footer class="shell"><span class="brand"><span class="brand-dot"></span>Pawtion</span><span data-i18n="footer">เพื่อทุกมื้อที่พอดี</span></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
