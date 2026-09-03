@@ -14,7 +14,20 @@
     <main>
       <nav class="nav shell" aria-label="เมนูหลัก">
         <a class="brand" href="#top" aria-label="Pawtion home"><span class="brand-dot"></span>Pawtion</a>
-        <div class="nav-actions"><a class="nav-link" href="#calculator" data-i18n="navCalc">คำนวณอาหาร <span>↗</span></a><button id="language-toggle" class="utility-button" type="button" aria-label="Change language">EN</button><button id="theme-toggle" class="utility-button theme-button" type="button" aria-label="Change appearance">☀</button></div>
+        <div class="nav-actions">
+          <a class="nav-link" href="#calculator" data-i18n="navCalc">คำนวณอาหาร <span>↗</span></a>
+          <button id="language-toggle" class="utility-button language-button" type="button" aria-label="Switch to English">
+            <span data-language="th">TH</span><span class="language-divider" aria-hidden="true">/</span><span data-language="en">EN</span>
+          </button>
+          <label class="theme-control">
+            <span class="sr-only">Color theme</span>
+            <select id="theme-select" class="utility-button theme-select" aria-label="Color theme">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+              <option value="auto">Auto</option>
+            </select>
+          </label>
+        </div>
       </nav>
 
       <section id="top" class="hero shell">

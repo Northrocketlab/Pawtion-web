@@ -1,4 +1,4 @@
-const state = { species: 'dog', neutered: 'yes', condition: 'ideal', step: 1, lang: 'th' };
+const state = { species: 'dog', neutered: 'yes', condition: 'ideal', step: 1, lang: 'th', theme: 'auto' };
 const dictionary = {
   th: {
     navCalc:'คำนวณอาหาร <span>↗</span>', heroEyebrow:'NUTRITION, SIMPLIFIED', heroTitle:'อาหารที่พอดี<br /><em>สำหรับเขา</em>', heroCopy:'คำแนะนำปริมาณอาหารรายวันสำหรับน้องหมาและน้องแมว<br class="desktop" /> เริ่มจากข้อมูลที่เป็นของเขาจริง ๆ', heroButton:'เริ่มคำนวณ <span>↓</span>',
@@ -21,7 +21,8 @@ function translatePage(){
   document.documentElement.lang = state.lang;
   document.querySelectorAll('[data-i18n]').forEach(el=>el.innerHTML=t(el.dataset.i18n));
   document.querySelectorAll('[data-i18n-html]').forEach(el=>el.innerHTML=t(el.dataset.i18nHtml));
-  document.querySelector('#language-toggle').textContent=state.lang==='th'?'EN':'TH';
+  document.querySelectorAll('#language-toggle [data-language]').forEach(option=>option.classList.toggle('active',option.dataset.language===state.lang));
+  document.querySelector('#language-toggle').setAttribute('aria-label',state.lang==='th'?'Switch to English':'เปลี่ยนเป็นภาษาไทย');
   document.querySelector('#pet-name').placeholder=state.lang==='th'?'เช่น โมจิ':'e.g. Mochi';
   document.querySelector('[data-species="dog"] img').alt=t('dog');
   document.querySelector('[data-species="cat"] img').alt=t('cat');
@@ -35,7 +36,17 @@ function updateStep(){
   next.innerHTML=state.step===4?t('view'):t('next');
 }
 document.querySelector('#language-toggle').addEventListener('click',()=>{state.lang=state.lang==='th'?'en':'th';translatePage();});
-document.querySelector('#theme-toggle').addEventListener('click',()=>{const light=document.documentElement.dataset.theme==='light';document.documentElement.dataset.theme=light?'dark':'light';document.querySelector('#theme-toggle').textContent=light?'☀':'☾';});
+const themeSelect=document.querySelector('#theme-select'),systemTheme=window.matchMedia('(prefers-color-scheme: light)');
+function applyTheme(theme){
+  if(!['light','dark','auto'].includes(theme))theme='auto';
+  state.theme=theme;
+  document.documentElement.dataset.theme=theme==='auto'?(systemTheme.matches?'light':'dark'):theme;
+  document.documentElement.dataset.themeMode=theme;
+  themeSelect.value=theme;
+}
+function getSavedTheme(){try{return localStorage.getItem('pawtion-theme')||'auto';}catch{return 'auto';}}
+themeSelect.addEventListener('change',()=>{try{localStorage.setItem('pawtion-theme',themeSelect.value);}catch{}applyTheme(themeSelect.value);});
+systemTheme.addEventListener('change',()=>{if(state.theme==='auto')applyTheme('auto');});
 document.querySelectorAll('[data-species]').forEach(button=>button.addEventListener('click',()=>{state.species=button.dataset.species;document.querySelectorAll('[data-species]').forEach(item=>item.classList.toggle('selected',item===button));}));
 document.querySelectorAll('[data-neutered]').forEach(button=>button.addEventListener('click',()=>{state.neutered=button.dataset.neutered;document.querySelectorAll('[data-neutered]').forEach(item=>item.classList.toggle('selected',item===button));}));
 document.querySelectorAll('[data-condition]').forEach(button=>button.addEventListener('click',()=>{state.condition=button.dataset.condition;document.querySelectorAll('[data-condition]').forEach(item=>item.classList.toggle('selected',item===button));}));
@@ -56,4 +67,5 @@ function showResult(){
   document.querySelector('#result').hidden=false;document.querySelector('#result').scrollIntoView({behavior:'smooth',block:'start'});
 }
 document.querySelector('#reset').addEventListener('click',()=>{document.querySelector('#result').hidden=true;document.querySelector('#calculator').scrollIntoView({behavior:'smooth'});});
+applyTheme(getSavedTheme());
 translatePage();
