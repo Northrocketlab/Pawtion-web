@@ -13,7 +13,7 @@
   <body>
     <main>
       <nav class="nav shell" aria-label="เมนูหลัก">
-        <a class="brand" href="#top" aria-label="Pawtion home"><span class="brand-dot"></span>Pawtion</a>
+        <a class="brand" href="#top" aria-label="Pawtion home"><svg class="brand-paw" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="4.5" cy="9" rx="2.5" ry="3.3" transform="rotate(-25 4.5 9)"/><ellipse cx="9" cy="5" rx="2.5" ry="3.3"/><ellipse cx="15" cy="5" rx="2.5" ry="3.3"/><ellipse cx="19.5" cy="9" rx="2.5" ry="3.3" transform="rotate(25 19.5 9)"/><path d="M12 10c-2.8 0-4 2.6-6.2 5.1C3.2 18 5 22 8.2 21c2.6-.8 5-.8 7.6 0 3.2 1 5-3 2.4-5.9C16 12.6 14.8 10 12 10Z"/></svg>Pawtion</a>
         <div class="nav-actions">
           <a class="nav-link" href="#calculator" data-i18n="navCalc">คำนวณอาหาร <span>↗</span></a>
           <button id="language-toggle" class="utility-button language-button" type="button" aria-label="Switch to English">
@@ -21,6 +21,9 @@
           </button>
           <label class="theme-control">
             <span class="sr-only">Color theme</span>
+            <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+            <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14A9 9 0 0 1 10 3.5 9 9 0 1 0 20.5 14Z"/></svg>
+            <svg class="theme-icon theme-icon-auto" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M12 17v4m-4 0h8"/></svg>
             <select id="theme-select" class="utility-button theme-select" aria-label="Color theme">
               <option value="light">Light</option>
               <option value="dark">Dark</option>
@@ -51,8 +54,8 @@
 
           <section class="form-step active" data-step="1">
             <div class="choice-grid species-grid">
-              <button type="button" class="choice-card species-card selected" data-species="dog"><img class="animal-photo" src="assets/dog.png" alt="สุนัข" /><span class="species-name"><strong data-i18n="dog">สุนัข</strong><small data-i18n="dogCaption">Dog</small></span></button>
-              <button type="button" class="choice-card species-card" data-species="cat"><img class="animal-photo" src="assets/cat.png" alt="แมว" /><span class="species-name"><strong data-i18n="cat">แมว</strong><small data-i18n="catCaption">Cat</small></span></button>
+              <button type="button" class="choice-card species-card selected" data-species="dog"><img class="animal-photo" src="assets/dog.png" alt="สุนัข" /><span class="species-name"><strong data-i18n="dog">สุนัข</strong></span></button>
+              <button type="button" class="choice-card species-card" data-species="cat"><img class="animal-photo" src="assets/cat.png" alt="แมว" /><span class="species-name"><strong data-i18n="cat">แมว</strong></span></button>
             </div>
           </section>
 
