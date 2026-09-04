@@ -22,3 +22,30 @@ a.button{text-decoration:none}
 html[data-theme-mode="light"] .theme-icon-light,
 html[data-theme-mode="dark"] .theme-icon-dark,
 html[data-theme-mode="auto"] .theme-icon-auto{display:block}
+
+/* Header navigation */
+body{padding-top:86px}
+.nav{position:fixed;top:0;left:50%;z-index:50;width:min(1120px,calc(100% - 48px));transform:translateX(-50%);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+#top,#calculator{scroll-margin-top:100px}
+.primary-nav{display:flex;align-items:center;justify-content:center;gap:6px}
+.primary-nav .nav-link{position:relative;margin:0;padding:9px 12px;border-radius:999px;color:var(--muted);font-size:13px;font-weight:600;transition:color .2s,background .2s}
+.primary-nav .nav-link:hover{color:var(--text)}
+.primary-nav .nav-link.active{background:var(--select);color:var(--text)}
+.primary-nav .nav-link.active:after{position:absolute;left:50%;bottom:4px;width:16px;height:2px;border-radius:2px;background:var(--accent);content:"";transform:translateX(-50%)}
+
+/* Reference library */
+.reference-page{min-height:calc(100vh - 150px);padding:90px 0 130px}
+.reference-intro{max-width:760px}
+.reference-intro h1{margin:0;font-size:clamp(44px,7vw,82px);font-weight:600;line-height:1;letter-spacing:-.06em}
+.reference-intro>p:last-child{margin:28px 0 0;color:var(--muted);font-size:18px;line-height:1.7}
+.reference-library{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:64px}
+.reference-card{min-height:240px;padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.reference-card span{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.12em}
+.reference-card h2{margin:54px 0 10px;font-size:22px;letter-spacing:-.03em}
+.reference-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+.reference-back{display:inline-flex;margin-top:40px}
+@media(max-width:760px){body{padding-top:112px}.nav{width:min(100% - 32px,1120px);height:auto;min-height:112px;flex-wrap:wrap;padding:15px 0}.primary-nav{order:3;width:100%;justify-content:flex-start;overflow-x:auto;padding-top:5px}.primary-nav .nav-link{display:inline-flex;flex:none;padding:8px 11px}#top,#calculator{scroll-margin-top:126px}.reference-page{padding:70px 0 90px}.reference-library{grid-template-columns:1fr;margin-top:42px}.reference-card{min-height:190px}.reference-card h2{margin-top:36px}}
+.language-button{min-width:112px}
+.language-button [data-language]{display:inline-flex;align-items:center;gap:3px}
+.language-flag{font-size:13px;line-height:1}
+@media(max-width:650px){.language-button{min-width:106px;padding-inline:7px}.language-flag{font-size:12px}}
