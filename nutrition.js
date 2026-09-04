@@ -1,0 +1,6 @@
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.PawtionNutrition=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
+  const ENERGY_FACTOR_CONFIG={adult:{dog:{neutered:1.6,intact:1.8},cat:{neutered:1.2,intact:1.4}},growth:{puppyUnderFourMonths:3,puppyFourMonthsAndOlder:2,kitten:2.5},activity:{low:.9,moderate:1,high:1.15},thinAdjustment:1.15,weightLoss:{dog:1.4,cat:1}};
+  function getEnergyFactor({species,stage,ageMonths,neutered,condition,activity}){let factor;if(stage==='puppy')factor=ageMonths<4?ENERGY_FACTOR_CONFIG.growth.puppyUnderFourMonths:ENERGY_FACTOR_CONFIG.growth.puppyFourMonthsAndOlder;else if(stage==='kitten')factor=ENERGY_FACTOR_CONFIG.growth.kitten;else factor=ENERGY_FACTOR_CONFIG.adult[species][neutered==='yes'?'neutered':'intact'];if(condition==='overweight')return ENERGY_FACTOR_CONFIG.weightLoss[species];if(condition==='thin')return factor*ENERGY_FACTOR_CONFIG.thinAdjustment;return factor*ENERGY_FACTOR_CONFIG.activity[activity];}
+  function calculateEnergy(weightKg,factor){const rer=70*Math.pow(Number(weightKg),.75);return{rer,kcal:Math.round(rer*factor)};}
+  return{ENERGY_FACTOR_CONFIG,getEnergyFactor,calculateEnergy};
+});
