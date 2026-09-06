@@ -84,11 +84,17 @@
           <section class="form-step" data-step="3">
             <p class="question" data-i18n="neuteredQ">ทำหมันแล้วหรือยัง?</p>
             <div class="segment" role="group" aria-label="Neutered status"><button type="button" class="selected" data-neutered="yes" data-i18n="neuteredYes">ทำหมันแล้ว</button><button type="button" data-neutered="no" data-i18n="neuteredNo">ยังไม่ทำ</button></div>
-            <p class="question space-top" data-i18n="conditionQ">รูปร่างตอนนี้เป็นอย่างไร?</p>
-            <div class="choice-grid body-grid">
-              <button type="button" class="choice-card" data-condition="thin"><span>01</span><strong data-i18n="thin">ผอม</strong><small data-i18n="gain">ต้องการเพิ่มน้ำหนัก</small></button>
-              <button type="button" class="choice-card selected" data-condition="ideal"><span>02</span><strong data-i18n="ideal">สมส่วน</strong><small data-i18n="maintain">รักษาน้ำหนัก</small></button>
-              <button type="button" class="choice-card" data-condition="overweight"><span>03</span><strong data-i18n="overweight">มีน้ำหนักเกิน</strong><small data-i18n="lose">ค่อย ๆ ลดน้ำหนัก</small></button>
+            <div class="assessment-section space-top">
+              <div class="assessment-title"><p class="question" data-i18n="bcsTitle">ประเมินรูปร่าง (BCS)</p><span class="assessment-estimate" data-i18n="estimatedBody">ค่าประเมินรูปร่าง</span></div>
+              <div class="score-selector" id="bcs-selector" role="radiogroup" aria-label="Body Condition Score"></div>
+              <div class="assessment-summary" aria-live="polite"><strong id="bcs-category"></strong><span id="bcs-score"></span><p id="bcs-description"></p></div>
+              <details class="assessment-help"><summary data-i18n="howBCS">วิธีประเมินรูปร่าง</summary><p data-i18n="howBCSCopy"></p><div class="wsava-guide"><img data-bcs-guide="dog" src="assets/wsava-guides/bcs-dog.jpg" alt="WSAVA Body Condition Score chart for dogs" /><img data-bcs-guide="cat" src="assets/wsava-guides/bcs-cat.jpg" alt="WSAVA Body Condition Score chart for cats" hidden /><a id="bcs-guide-source" href="https://wsava.org/wp-content/uploads/2025/06/WSAVA_BCSCat_BCSDog_Nutrition_250612.pdf" target="_blank" rel="noreferrer" data-i18n="openWSAVA">เปิดเอกสารต้นฉบับจาก WSAVA ↗</a></div></details>
+            </div>
+            <div class="assessment-section">
+              <div class="assessment-title"><p class="question" data-i18n="mcsTitle">ประเมินมวลกล้ามเนื้อ (MCS)</p><span class="assessment-estimate" data-i18n="estimatedMuscle">ค่าประเมินมวลกล้ามเนื้อ</span></div>
+              <div class="mcs-grid" id="mcs-selector"></div>
+              <p id="mcs-description" class="assessment-description"></p>
+              <details class="assessment-help"><summary data-i18n="howMCS">วิธีประเมินมวลกล้ามเนื้อ</summary><p data-i18n="howMCSCopy"></p><div class="wsava-guide"><img data-mcs-guide="dog" src="assets/wsava-guides/mcs-dog.jpg" alt="WSAVA Muscle Condition Score chart for dogs" /><img data-mcs-guide="cat" src="assets/wsava-guides/mcs-cat.jpg" alt="WSAVA Muscle Condition Score chart for cats" hidden /><a id="mcs-guide-source" href="https://wsava.org/wp-content/uploads/2020/01/Muscle-Condition-Score-Chart-for-Dogs.pdf" target="_blank" rel="noreferrer" data-i18n="openWSAVA">เปิดเอกสารต้นฉบับจาก WSAVA ↗</a></div></details>
             </div>
           </section>
 
@@ -113,6 +119,7 @@
         <div class="result-main"><div><span class="result-kicker" data-i18n="dailyEnergy">พลังงานต่อวัน</span><strong id="calorie-result">0 <small>kcal</small></strong></div><div class="divider"></div><div><span class="result-kicker" data-i18n="dailyFood">ปริมาณอาหารต่อวัน</span><strong id="gram-result">0 <small>กรัม</small></strong></div></div>
         <div class="result-cards"><article><span data-i18n="twoMeals">แบ่งเป็น 2 มื้อ</span><b id="meal-result">0 กรัม / มื้อ</b></article><article><span data-i18n="weekPrep">เตรียมต่อสัปดาห์</span><b id="week-result">0 กรัม</b></article><article><span data-i18n="treatEnergy">พลังงานขนม</span><b data-i18n="treatLimit">ไม่เกิน 10%</b></article></div>
         <aside class="note"><span>✦</span><p data-i18n="note">ตัวเลขนี้เป็นค่าเริ่มต้นจากน้ำหนัก ช่วงวัย การทำหมัน กิจกรรม และรูปร่างของน้อง ควรชั่งน้ำหนักและสังเกตสภาพร่างกายทุก 2–4 สัปดาห์</p></aside>
+        <aside id="nutrition-risk" class="nutrition-risk" hidden><strong data-i18n="nutritionRiskTitle">ข้อควรใส่ใจด้านโภชนาการ</strong><div id="nutrition-risk-messages"></div></aside>
         <p class="disclaimer" data-i18n="disclaimer">สำหรับสัตว์เลี้ยงสุขภาพดีเท่านั้น หากกำลังตั้งท้อง ให้นม มีโรคประจำตัว หรือมีการเปลี่ยนแปลงน้ำหนักผิดปกติ โปรดปรึกษาสัตวแพทย์ก่อนปรับอาหาร</p>
       </section>
 
@@ -120,7 +127,8 @@
     </main>
     <footer class="shell"><span class="brand"><span class="brand-dot"></span>Pawtion</span><span data-i18n="footer">เพื่อทุกมื้อที่พอดี</span></footer>
     <script src="life-stage.js?v=1"></script>
-    <script src="nutrition.js?v=1"></script>
-    <script src="app.js?v=7"></script>
+    <script src="body-condition.js?v=1"></script>
+    <script src="nutrition.js?v=2"></script>
+    <script src="app.js?v=8"></script>
   </body>
 </html>
