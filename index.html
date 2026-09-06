@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body>
     <main>
@@ -54,7 +54,7 @@
 
         <form id="feeding-form" novalidate>
           <div class="progress" aria-hidden="true"><span></span></div>
-          <div class="step-label"><span id="step-number">01</span><span id="step-title">เลือกสัตว์เลี้ยง</span><span>04</span></div>
+          <div class="step-label"><strong id="step-progress-text">ขั้นตอน 1 จาก 4</strong><span id="step-title">เลือกสัตว์เลี้ยง</span></div>
 
           <section class="form-step active" data-step="1">
             <div class="choice-grid species-grid">
@@ -68,14 +68,16 @@
               <label class="field"><span data-i18n-html="petName">ชื่อน้อง <i>ไม่บังคับ</i></span><input id="pet-name" type="text" maxlength="30" placeholder="เช่น โมจิ" /></label>
               <label class="field"><span data-i18n="weight">น้ำหนักปัจจุบัน</span><div class="input-unit"><input id="weight" type="number" inputmode="decimal" min="0.5" max="120" step="0.1" placeholder="0.0" required /><b data-i18n="kg">กก.</b></div></label>
             </div>
-            <div class="field-row age-row">
-              <label class="field"><span data-i18n="age">อายุ</span><input id="age" type="number" inputmode="decimal" min="0" max="100" step="0.1" value="2" required /></label>
-              <label class="field"><span data-i18n="ageUnit">หน่วยอายุ</span><select id="age-unit"><option value="weeks" data-i18n="weeks">สัปดาห์</option><option value="months" data-i18n="months">เดือน</option><option value="years" data-i18n="years" selected>ปี</option></select></label>
+            <div class="age-inputs" role="group" aria-label="อายุ">
+              <label class="field"><span data-i18n="years">ปี</span><input id="age-years" type="number" inputmode="numeric" min="0" max="100" step="1" value="2" required /></label>
+              <label class="field"><span data-i18n="months">เดือน</span><input id="age-months" type="number" inputmode="numeric" min="0" max="11" step="1" value="0" required /></label>
+              <label class="field"><span data-i18n="days">วัน</span><input id="age-days" type="number" inputmode="numeric" min="0" max="30" step="1" value="0" required /></label>
             </div>
             <label class="field" id="dog-size-field"><span data-i18n="adultSize">ขนาดเมื่อโตเต็มวัย</span><select id="adult-size"><option value="auto" data-i18n="sizeAuto">ประเมินจากน้ำหนักปัจจุบัน</option><option value="small" data-i18n="sizeSmall">เล็ก — ต่ำกว่า 10 กก.</option><option value="medium" data-i18n="sizeMedium">กลาง — 10–25 กก.</option><option value="large" data-i18n="sizeLarge">ใหญ่ — 25–40 กก.</option><option value="giant" data-i18n="sizeGiant">ใหญ่มาก — มากกว่า 40 กก.</option></select><small class="field-help" data-i18n="sizeHelp">หากเลือกประเมินอัตโนมัติ Pawtion จะใช้น้ำหนักปัจจุบันเป็นค่าประมาณ</small></label>
             <div class="life-stage-panel" aria-live="polite">
               <div class="life-stage-heading"><span data-i18n="lifeStage">ช่วงวัย</span><button class="info-button" id="life-stage-info" type="button" aria-expanded="false" aria-controls="life-stage-tooltip">i</button></div>
               <strong id="life-stage-value">Young Adult</strong>
+              <small id="life-stage-range"></small>
               <p id="life-stage-context"></p>
               <p id="life-stage-tooltip" class="life-stage-tooltip" hidden data-i18n="lifeStageTooltip"></p>
             </div>
@@ -123,12 +125,11 @@
         <p class="disclaimer" data-i18n="disclaimer">สำหรับสัตว์เลี้ยงสุขภาพดีเท่านั้น หากกำลังตั้งท้อง ให้นม มีโรคประจำตัว หรือมีการเปลี่ยนแปลงน้ำหนักผิดปกติ โปรดปรึกษาสัตวแพทย์ก่อนปรับอาหาร</p>
       </section>
 
-      <section class="knowledge shell"><p class="eyebrow">KNOW THE BASICS</p><h2 data-i18n="knowledgeTitle">เริ่มให้ดี แล้วค่อยปรับให้พอดี</h2><div class="knowledge-grid"><article><span>01</span><h3 data-i18n="readLabel">อ่านฉลาก</h3><p data-i18n="readLabelCopy">กรอกค่า kcal ต่อ 100 กรัมจากอาหารที่น้องกินจริง เพื่อให้ผลลัพธ์แม่นยำขึ้น</p></article><article><span>02</span><h3 data-i18n="weigh">ชั่ง ไม่กะ</h3><p data-i18n="weighCopy">ใช้เครื่องชั่งครัวตวงอาหารเป็นกรัม แทนการกะด้วยถ้วยหรือสายตา</p></article><article><span>03</span><h3 data-i18n="follow">ติดตามผล</h3><p data-i18n="followCopy">ปรับปริมาณทีละน้อยตามน้ำหนัก รูปร่าง และกิจกรรมที่เปลี่ยนไป</p></article></div></section>
     </main>
     <footer class="shell"><span class="brand"><span class="brand-dot"></span>Pawtion</span><span data-i18n="footer">เพื่อทุกมื้อที่พอดี</span></footer>
-    <script src="life-stage.js?v=1"></script>
+    <script src="life-stage.js?v=2"></script>
     <script src="body-condition.js?v=1"></script>
     <script src="nutrition.js?v=2"></script>
-    <script src="app.js?v=8"></script>
+    <script src="app.js?v=9"></script>
   </body>
 </html>

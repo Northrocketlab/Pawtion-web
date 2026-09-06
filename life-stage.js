@@ -8,9 +8,10 @@
   };
   const CAT_LIFE_STAGE_CONFIG={kittenEndMonths:12,youngAdultEndMonths:84,matureAdultEndMonths:120};
   function normalizeAgeToMonths(value,unit){if(value==='')return null;const n=Number(value);if(!Number.isFinite(n)||n<0)return null;return unit==='weeks'?n*12/52:unit==='years'?n*12:n;}
+  function normalizeAgePartsToMonths(years,months,days){const values=[years,months,days].map(Number);if(values.some(value=>!Number.isFinite(value)||value<0))return null;return values[0]*12+values[1]+values[2]/(365.25/12);}
   function inferDogAdultSize(weightKg){const weight=Number(weightKg);if(!Number.isFinite(weight)||weight<=0)return'medium';if(weight<10)return'small';if(weight<=25)return'medium';if(weight<=40)return'large';return'giant';}
   function getDogLifeStage(ageMonths,adultSize){const age=Number(ageMonths),size=DOG_LIFE_STAGE_CONFIG.puppyEndMonths[adultSize]?adultSize:'medium';if(age<DOG_LIFE_STAGE_CONFIG.puppyEndMonths[size])return'puppy';if(age<DOG_LIFE_STAGE_CONFIG.maturityMonths[size])return'youngAdult';if(age>=DOG_LIFE_STAGE_CONFIG.seniorStartMonths[size])return'senior';return'matureAdult';}
   function getCatLifeStage(ageMonths){const age=Number(ageMonths);if(age<CAT_LIFE_STAGE_CONFIG.kittenEndMonths)return'kitten';if(age<CAT_LIFE_STAGE_CONFIG.youngAdultEndMonths)return'youngAdult';if(age<=CAT_LIFE_STAGE_CONFIG.matureAdultEndMonths)return'matureAdult';return'senior';}
   function classifyLifeStage(species,ageMonths,adultSize){return species==='cat'?getCatLifeStage(ageMonths):getDogLifeStage(ageMonths,adultSize);}
-  return{DOG_LIFE_STAGE_CONFIG,CAT_LIFE_STAGE_CONFIG,normalizeAgeToMonths,inferDogAdultSize,getDogLifeStage,getCatLifeStage,classifyLifeStage};
+  return{DOG_LIFE_STAGE_CONFIG,CAT_LIFE_STAGE_CONFIG,normalizeAgeToMonths,normalizeAgePartsToMonths,inferDogAdultSize,getDogLifeStage,getCatLifeStage,classifyLifeStage};
 });
