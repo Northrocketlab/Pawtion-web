@@ -88,8 +88,15 @@
             <div class="segment" role="group" aria-label="Neutered status"><button type="button" class="selected" data-neutered="yes" data-i18n="neuteredYes">ทำหมันแล้ว</button><button type="button" data-neutered="no" data-i18n="neuteredNo">ยังไม่ทำ</button></div>
             <div class="assessment-section space-top">
               <div class="assessment-title"><p class="question" data-i18n="bcsTitle">ประเมินรูปร่าง (BCS)</p><span class="assessment-estimate" data-i18n="estimatedBody">ค่าประเมินรูปร่าง</span></div>
-              <div class="score-selector" id="bcs-selector" role="radiogroup" aria-label="Body Condition Score"></div>
+              <div class="bcs-slider-control">
+                <input id="bcs-slider" type="range" min="1" max="9" step="1" value="5" aria-label="Body Condition Score" />
+                <div class="bcs-slider-scale" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div>
+              </div>
               <div class="assessment-summary" aria-live="polite"><strong id="bcs-category"></strong><span id="bcs-score"></span><p id="bcs-description"></p></div>
+              <figure id="bcs-example" class="bcs-example" aria-live="polite">
+                <img id="bcs-example-image" class="bcs-example-image" src="assets/wsava-guides/bcs-examples/bcs-cat-5.jpg" alt="WSAVA Body Condition Score example" />
+                <figcaption id="bcs-example-label">WSAVA example · BCS 5/9</figcaption>
+              </figure>
               <details class="assessment-help"><summary data-i18n="howBCS">วิธีประเมินรูปร่าง</summary><p data-i18n="howBCSCopy"></p><div class="wsava-guide"><img data-bcs-guide="dog" src="assets/wsava-guides/bcs-dog.jpg" alt="WSAVA Body Condition Score chart for dogs" /><img data-bcs-guide="cat" src="assets/wsava-guides/bcs-cat.jpg" alt="WSAVA Body Condition Score chart for cats" hidden /><a id="bcs-guide-source" href="https://wsava.org/wp-content/uploads/2025/06/WSAVA_BCSCat_BCSDog_Nutrition_250612.pdf" target="_blank" rel="noreferrer" data-i18n="openWSAVA">เปิดเอกสารต้นฉบับจาก WSAVA ↗</a></div></details>
             </div>
             <div class="assessment-section">
