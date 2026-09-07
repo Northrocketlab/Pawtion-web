@@ -7,13 +7,13 @@
     <title>Pawtion — อาหารที่พอดีสำหรับเขา</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body>
     <main>
       <nav class="nav shell" aria-label="เมนูหลัก">
-        <a class="brand" href="#top" aria-label="Pawtion home"><svg class="brand-paw" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="4.5" cy="9" rx="2.5" ry="3.3" transform="rotate(-25 4.5 9)"/><ellipse cx="9" cy="5" rx="2.5" ry="3.3"/><ellipse cx="15" cy="5" rx="2.5" ry="3.3"/><ellipse cx="19.5" cy="9" rx="2.5" ry="3.3" transform="rotate(25 19.5 9)"/><path d="M12 10c-2.8 0-4 2.6-6.2 5.1C3.2 18 5 22 8.2 21c2.6-.8 5-.8 7.6 0 3.2 1 5-3 2.4-5.9C16 12.6 14.8 10 12 10Z"/></svg>Pawtion</a>
+        <a class="brand" href="#top" aria-label="Pawtion home"><img class="brand-paw-logo" src="assets/pawtion-paw.png" alt="" /><img class="brand-logo" src="assets/pawtion-logo.png" alt="Pawtion" /></a>
         <div class="primary-nav" aria-label="ส่วนต่าง ๆ ของเว็บไซต์">
           <a class="nav-link active" href="#top" data-page="home" data-i18n="navHome" aria-current="page">หน้าหลัก</a>
           <a class="nav-link" href="#calculator" data-page="calculator" data-i18n="navCalc">คำนวณอาหาร</a>
@@ -21,7 +21,7 @@
         </div>
         <div class="nav-actions">
           <button id="language-toggle" class="utility-button language-button" type="button" aria-label="Switch to English">
-            <span data-language="th"><span class="language-flag" aria-hidden="true">🇹🇭</span> TH</span><span class="language-divider" aria-hidden="true">/</span><span data-language="en"><span class="language-flag" aria-hidden="true">🇬🇧</span> EN</span>
+            <span data-language="th">TH</span><span class="language-divider" aria-hidden="true">/</span><span data-language="en">EN</span>
           </button>
           <label class="theme-control">
             <span class="sr-only">Color theme</span>
@@ -133,7 +133,7 @@
       </section>
 
     </main>
-    <footer class="shell"><span class="brand"><span class="brand-dot"></span>Pawtion</span><span data-i18n="footer">เพื่อทุกมื้อที่พอดี</span></footer>
+    <footer class="shell"><span class="brand"><img class="brand-paw-logo" src="assets/pawtion-paw.png" alt="" /><img class="brand-logo" src="assets/pawtion-logo.png" alt="Pawtion" /></span><span data-i18n="footer">เพื่อทุกมื้อที่พอดี</span></footer>
     <script src="life-stage.js?v=2"></script>
     <script src="body-condition.js?v=1"></script>
     <script src="nutrition.js?v=2"></script>
